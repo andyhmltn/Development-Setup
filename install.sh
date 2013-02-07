@@ -32,3 +32,40 @@ rbenv global 1.9.3-p362
 gem install bundle
 # Install rails
 gem install rails
+
+##
+# Directory setups
+##
+## -o flag to skip this
+o=0
+p=false
+
+while getopts ":opt:" options
+do
+    case $options in
+        o ) o=1
+        ;;
+        p ) opt2=true
+        ;;
+        t ) opt3=$OPTARG
+        ;;
+    esac
+done
+
+if [ $o -eq 0 ]
+then
+	## Create /local
+	mkdir -p /local/www/applications
+	mkdir -p /local/www/git
+	mkdir -p /local/bin
+
+	## Add the deployer user
+	adduser deployer
+	cd ~deployer
+
+	## Link the /local/www folder to deployers home
+	ln -s /local/www/applications apps
+	ln -s /local/www/git
+
+	chown -R deployer /local/www
+fi
