@@ -59,6 +59,10 @@ then
 	mkdir -p /local/www/git
 	mkdir -p /local/bin
 
+	## Add /local/bin to the path
+	echo "export $PATH=/local/bin:$PATH" >> ~/.bashrc
+	echo "export $PATH=/local/bin:$PATH" >> ~deployer/.bashrc
+
 	## Add the deployer user
 	adduser deployer
 	cd ~deployer
