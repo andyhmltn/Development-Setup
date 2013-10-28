@@ -59,13 +59,13 @@ then
 	mkdir -p /local/www/git
 	mkdir -p /local/bin
 
+       ## Add the deployer user
+       adduser deployer
+       cd ~deployer
+
 	## Add /local/bin to the path
 	echo "export $PATH=/local/bin:$PATH" >> ~/.bashrc
 	echo "export $PATH=/local/bin:$PATH" >> ~deployer/.bashrc
-
-	## Add the deployer user
-	adduser deployer
-	cd ~deployer
 
 	## Link the /local/www folder to deployers home
 	ln -s /local/www/applications apps
