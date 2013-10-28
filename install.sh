@@ -42,34 +42,34 @@ p=false
 
 while getopts ":opt:" options
 do
-    case $options in
-        o ) o=1
-        ;;
-        p ) opt2=true
-        ;;
-        t ) opt3=$OPTARG
-        ;;
+  case $options in
+    o ) o=1
+    ;;
+    p ) opt2=true
+    ;;
+    t ) opt3=$OPTARG
+    ;;
     esac
 done
 
 if [ $o -eq 0 ]
 then
-	## Create /local
-	mkdir -p /local/www/applications
-	mkdir -p /local/www/git
-	mkdir -p /local/bin
+  ## Create /local
+  mkdir -p /local/www/applications
+  mkdir -p /local/www/git
+  mkdir -p /local/bin
 
-       ## Add the deployer user
-       adduser deployer
-       cd ~deployer
+  ## Add the deployer user
+  adduser deployer
+  cd ~deployer
 
-	## Add /local/bin to the path
-	echo "export $PATH=/local/bin:$PATH" >> ~/.bashrc
-	echo "export $PATH=/local/bin:$PATH" >> ~deployer/.bashrc
+  ## Add /local/bin to the path
+  echo "export $PATH=/local/bin:$PATH" >> ~/.bashrc
+  echo "export $PATH=/local/bin:$PATH" >> ~deployer/.bashrc
 
-	## Link the /local/www folder to deployers home
-	ln -s /local/www/applications apps
-	ln -s /local/www/git
+  ## Link the /local/www folder to deployers home
+  ln -s /local/www/applications apps
+  ln -s /local/www/git
 
-	chown -R deployer /local/www
+  chown -R deployer /local/www
 fi
